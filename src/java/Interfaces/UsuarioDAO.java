@@ -1,13 +1,13 @@
 // Interfaces/UsuarioDAO.java
 package Interfaces;
 
-import modelo.Usuario;
 import java.util.List;
+import modelo.Usuario;
 
 public interface UsuarioDAO {
-    public List<Usuario> listar();
-    public Usuario obtenerPorId(int id);
-    public boolean agregar(Usuario usuario);
-    public boolean actualizar(Usuario usuario);
-    public boolean eliminar(int id);
+    boolean agregar(Usuario usuario);
+    List<Usuario> listar();
+    Usuario buscarPorId(int id);
+    boolean actualizar(Usuario usuario);
+    boolean eliminar(int id);
 }
