@@ -102,7 +102,7 @@
             </div>
             
             <button type="submit" class="btn btn-submit">Guardar</button>
-            <a href="productos" class="btn btn-cancel">Cancelar</a>
+            <a href="/parcial2.1/indexproducto.jsp" class="btn btn-cancel">Cancelar</a>
         </form>
     </div>
 </body>

@@ -72,8 +72,7 @@
 <body>
     <div class="container">
         <h1>Lista de Productos</h1>
-        <a href="productos?accion=nuevo" class="btn btn-add">Nuevo Producto</a>
-        <a href="alertas" class="btn btn-add">Ver Alertas</a>
+       
         
         <table>
             <thead>
@@ -83,7 +82,7 @@
                     <th>Descripción</th>
                     <th>Cantidad</th>
                     <th>Fecha Vencimiento</th>
-                    <th>Acciones</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -95,16 +94,12 @@
                         <td>${producto.cantidad}</td>
                         <td>
                             <fmt:formatDate value="${producto.fechaVencimiento}" pattern="dd/MM/yyyy"/>
-                        </td>
-                        <td class="action-buttons">
-                            <a href="productos?accion=editar&id=${producto.id}" class="btn btn-edit">Editar</a>
-                            <a href="productos?accion=eliminar&id=${producto.id}" class="btn btn-delete">Eliminar</a>
-                        </td>
+                        
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <a href="/parcial2.1/indexproducto.jsp" class="btn btn-add">Volver al inicio</a>
+        <a href="index.jsp" class="btn btn-add">Volver al inicio</a>
     </div>
 </body>
 </html>

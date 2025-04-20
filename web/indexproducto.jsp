@@ -50,6 +50,8 @@
             <a href="productos" class="btn">Lista de Productos</a>
             <a href="productos?accion=nuevo" class="btn">Agregar Producto</a>
             <a href="alertas" class="btn">Ver Alertas</a>
+            <a href="/parcial2.1/UsuarioServlet" class="btn">volver a edicion de usuarios</a>
+            
         </div>
     </div>
 </body>

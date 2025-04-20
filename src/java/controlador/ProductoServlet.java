@@ -36,6 +36,9 @@ public class ProductoServlet extends HttpServlet {
         }
         
         switch (accion) {
+            case "user":
+                listarProductosuser(request, response);
+                break;
             case "nuevo":
                 mostrarFormularioNuevo(request, response);
                 break;
@@ -75,7 +78,14 @@ public class ProductoServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("productos", productoDAO.obtenerTodos());
         request.getRequestDispatcher("listaproductos.jsp").forward(request, response);
+        
     }
+    
+     private void listarProductosuser(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setAttribute("productos", productoDAO.obtenerTodos());
+        request.getRequestDispatcher("listaproductosuser.jsp").forward(request, response);
+    } 
     
     private void mostrarFormularioNuevo(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

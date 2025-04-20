@@ -130,7 +130,7 @@
         </div>
         
         <a href="productos" class="btn">Ver todos los productos</a>
-        <a href="index.jsp" class="btn">Volver al inicio</a>
+        <a href="/parcial2.1/indexproducto.jsp" class="btn">Volver al inicio</a>
     </div>
 </body>
 </html>

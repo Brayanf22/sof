@@ -50,7 +50,7 @@
                 </tr>
             </c:forEach>
         </tbody>
-        <a href="indexproducto" class="btn btn-danger">lista productos</a>
+        <a href="indexproducto.jsp" class="btn btn-danger">lista productos</a>
     </table>
 </body>
 </html>

@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
                 if ("admin".equals(usuario.getPerfil())) {
                     response.sendRedirect("UsuarioServlet");
                 } else {
-                    response.sendRedirect("user.jsp");
+                    response.sendRedirect("/parcial2.1/productos?accion=user");
                 }
                 return; // Importante: salir del método después de redireccionar
             }
