@@ -48,7 +48,7 @@ public class UsuarioServlet extends HttpServlet {
             UsuarioDAO dao = new UsuarioDAOImpl();
             List<Usuario> lista = dao.listar();
             request.setAttribute("listaUsuarios", lista);
-            request.getRequestDispatcher("/WEB-INF/listar.jsp").forward(request, response);
+            request.getRequestDispatcher("listar.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error al listar usuarios: " + e.getMessage());
@@ -58,7 +58,7 @@ public class UsuarioServlet extends HttpServlet {
 
     private void nuevoUsuario(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/nuevo.jsp").forward(request, response);
+        request.getRequestDispatcher("nuevo.jsp").forward(request, response);
     }
 
     private void agregarUsuario(HttpServletRequest request, HttpServletResponse response) 
@@ -79,7 +79,7 @@ public class UsuarioServlet extends HttpServlet {
                username == null || username.trim().isEmpty() ||
                password == null || password.trim().isEmpty()) {
                 request.setAttribute("error", "Todos los campos son obligatorios");
-                request.getRequestDispatcher("/WEB-INF/nuevo.jsp").forward(request, response);
+                request.getRequestDispatcher("nuevo.jsp").forward(request, response);
                 return;
             }
             
@@ -98,12 +98,12 @@ public class UsuarioServlet extends HttpServlet {
                 response.sendRedirect("UsuarioServlet?accion=listar&mensaje=Usuario agregado correctamente");
             } else {
                 request.setAttribute("error", "No se pudo agregar el usuario");
-                request.getRequestDispatcher("/WEB-INF/nuevo.jsp").forward(request, response);
+                request.getRequestDispatcher("nuevo.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error grave al agregar usuario: " + e.getMessage());
-            request.getRequestDispatcher("/WEB-INF/nuevo.jsp").forward(request, response);
+            request.getRequestDispatcher("nuevo.jsp").forward(request, response);
         }
     }
 
@@ -116,7 +116,7 @@ public class UsuarioServlet extends HttpServlet {
             
             if(usuario != null) {
                 request.setAttribute("usuario", usuario);
-                request.getRequestDispatcher("/WEB-INF/editar.jsp").forward(request, response);
+                request.getRequestDispatcher("editar.jsp").forward(request, response);
             } else {
                 response.sendRedirect("UsuarioServlet?accion=listar&error=Usuario no encontrado");
             }
@@ -171,6 +171,7 @@ public class UsuarioServlet extends HttpServlet {
         }
     }
 
+    
     private void eliminarUsuario(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         try {

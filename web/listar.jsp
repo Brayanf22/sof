@@ -19,6 +19,7 @@
     </c:if>
     
     <a href="UsuarioServlet?accion=nuevo" class="btn btn-primary mb-3">Nuevo Usuario</a>
+    <a href="LogoutServlet" class="btn btn-danger">Cerrar Sesión</a>
     
     <table class="table table-striped table-bordered">
         <thead class="table-dark">

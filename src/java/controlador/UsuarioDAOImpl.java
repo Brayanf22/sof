@@ -35,6 +35,35 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
     }
 
+    public Usuario validarUsuario(String username, String password) {
+    String sql = "SELECT idUsuario, nombre, apellido, email, usuario, perfil, perfiles_idperfiles " +
+                 "FROM usuario WHERE usuario = ? AND clave = ?";
+    
+    try (Connection conn = Conexion.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+        
+        ps.setString(1, username);
+        ps.setString(2, password);
+        
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setIdUsuario(rs.getInt("idUsuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setEmail(rs.getString("email"));
+                usuario.setUsername(rs.getString("usuario"));
+                usuario.setPerfil(rs.getString("perfil"));
+                usuario.setPerfiles_idperfiles(rs.getInt("perfiles_idperfiles"));
+                return usuario;
+            }
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error al validar usuario: " + ex.getMessage());
+    }
+    return null;
+}
+    
     @Override
     public List<Usuario> listar() {
         List<Usuario> lista = new ArrayList<>();
