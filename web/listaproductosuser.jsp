@@ -5,74 +5,85 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Lista de Productos</title>
+    <title>Inventario</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
             background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
         h1 {
-            color: #333;
-            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
         }
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
         }
+        
         th, td {
-            padding: 12px;
+            padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #eee;
         }
+        
         th {
-            background-color: #f2f2f2;
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
         }
+        
         tr:hover {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
         }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
         .btn {
             display: inline-block;
-            padding: 6px 12px;
-            margin: 2px;
+            padding: 10px 25px;
+            background-color: #3498db;
+            color: white;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
-        .btn-edit {
-            background-color: #2196F3;
-            color: white;
-        }
-        .btn-delete {
-            background-color: #f44336;
-            color: white;
-        }
-        .btn-add {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            margin-bottom: 20px;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 5px;
+        
+        .btn:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Productos</h1>
-       
+        <h1>Inventario</h1>
         
         <table>
             <thead>
@@ -82,7 +93,6 @@
                     <th>Descripción</th>
                     <th>Cantidad</th>
                     <th>Fecha Vencimiento</th>
-                    
                 </tr>
             </thead>
             <tbody>
@@ -94,12 +104,15 @@
                         <td>${producto.cantidad}</td>
                         <td>
                             <fmt:formatDate value="${producto.fechaVencimiento}" pattern="dd/MM/yyyy"/>
-                        
+                        </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
-        <a href="index.jsp" class="btn btn-add">Volver al inicio</a>
+        
+        <div class="btn-container">
+            <a href="index.jsp" class="btn">Volver al inicio</a>
+        </div>
     </div>
 </body>
 </html>

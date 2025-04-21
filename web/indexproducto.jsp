@@ -5,53 +5,128 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Control de Inventario</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
             background-color: #f5f5f5;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        
+        /* Estilos para el menú lateral */
+        .side-menu {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            height: 100vh;
+            position: fixed;
         }
-        h1 {
-            color: #333;
+        
+        .menu-header {
+            padding: 20px;
+            background-color: #1a252f;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .menu-items {
+            padding: 15px 0;
+        }
+        
+        .menu-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #34495e;
+        }
+        
+        .menu-item:hover {
+            background-color: #34495e;
+        }
+        
+        .menu-item i {
+            margin-right: 10px;
+        }
+        
+        /* Estilos para el área de contenido */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px;
+        }
+        
+        .welcome-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+        
+        .welcome-title {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+        
+        .welcome-message {
+            font-size: 18px;
+            color: #7f8c8d;
+            max-width: 600px;
+            line-height: 1.6;
         }
-        .btn:hover {
-            background-color: #45a049;
+        
+        /* Iconos usando caracteres Unicode */
+        .icon {
+            font-style: normal;
+            margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Sistema de Control de Inventario</h1>
-        <div class="menu">
-            <a href="productos" class="btn">Lista de Productos</a>
-            <a href="productos?accion=nuevo" class="btn">Agregar Producto</a>
-            <a href="alertas" class="btn">Ver Alertas</a>
-            <a href="/parcial2.1/UsuarioServlet" class="btn">volver a edicion de usuarios</a>
+    <!-- Menú lateral simplificado -->
+    <div class="side-menu">
+        <div class="menu-header">
+            SISTEMA DE INVENTARIO
+        </div>
+        <div class="menu-items">
+            <div class="menu-item" onclick="location.href='productos'">
+                <span class="icon">📦</span> Productos
+            </div>
             
+            <div class="menu-item" onclick="location.href='productos?accion=nuevo'">
+                <span class="icon">➕</span> Agregar Producto
+            </div>
+            
+            <div class="menu-item" onclick="location.href='alertas'">
+                <span class="icon">⚠️</span> Alertas
+            </div>
+            
+            <div class="menu-item" onclick="location.href='/parcial2.1/UsuarioServlet'">
+                <span class="icon">👥</span> Usuarios
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Área de contenido principal -->
+    <div class="main-content">
+        <div class="welcome-container">
+            <h1 class="welcome-title">Bienvenido al Sistema de Control de Inventario</h1>
+           
         </div>
     </div>
 </body>

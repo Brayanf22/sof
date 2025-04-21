@@ -106,7 +106,7 @@ public class ProductoServlet extends HttpServlet {
             String nombre = request.getParameter("nombre");
             String descripcion = request.getParameter("descripcion");
             int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("20-04-2024");
             Date fechaVencimiento = sdf.parse(request.getParameter("fechaVencimiento"));
             
             Producto nuevoProducto = new Producto();
