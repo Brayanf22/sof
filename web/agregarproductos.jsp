@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Agregar Producto</title>
+   
     <style>
         * {
             margin: 0;
@@ -175,9 +176,47 @@
             margin-bottom: 20px;
             font-size: 14px;
         }
+        
+        /* Estilos para la información del usuario */
+        .user-header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 15px 30px;
+            background-color: #e8f4fc;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .user-icon {
+            font-size: 18px;
+            color: #3498db;
+        }
+        
+        .user-name {
+            font-weight: 500;
+            color: #2c3e50;
+        }
     </style>
 </head>
 <body>
+     <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
     <!-- Menú lateral con botones -->
     <div class="side-menu">
         <div class="menu-header">SISTEMA DE INVENTARIO</div>
@@ -223,16 +262,16 @@
                     <input type="date" id="fechaVencimiento" name="fechaVencimiento" required>
                 </div>
                 
-              <div class="form-actions">
-    <button type="submit" class="btn btn-save">
-        <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon-small" alt="Guardar">
-        Guardar
-    </button>
-    <a href="/parcial2.1/indexproducto.jsp" class="btn btn-cancel">
-        <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon-small" alt="Cancelar">
-        Cancelar
-    </a>
-</div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-save">
+                        <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon-small" alt="Guardar">
+                        Guardar
+                    </button>
+                    <a href="/parcial2.1/indexproducto.jsp" class="btn btn-cancel">
+                        <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon-small" alt="Cancelar">
+                        Cancelar
+                    </a>
+                </div>
             </form>
         </div>
     </div>

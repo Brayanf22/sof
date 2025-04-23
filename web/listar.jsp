@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Lista de Usuarios</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             display: flex;
@@ -20,6 +21,8 @@
             background-color: #2c3e50;
             color: white;
             padding: 20px 0;
+            height: 100vh;
+            position: fixed;
         }
         
         .sidebar-header {
@@ -59,7 +62,7 @@
         
         .nav-link i {
             margin-right: 10px;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
         
         /* Main content styles */
@@ -67,6 +70,31 @@
             flex: 1;
             padding: 30px;
             background-color: #f8f9fa;
+            margin-left: 250px;
+        }
+        
+        .user-info-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        
+        .user-info {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .user-name {
+            font-weight: 500;
         }
         
         .card {
@@ -96,14 +124,34 @@
             background-color: #f8f9fa;
             font-weight: 600;
         }
-        
+
         .btn-sm {
             padding: 0.25rem 0.5rem;
             font-size: 0.875rem;
         }
+
+        .btn-outline-warning:hover {
+            background-color: #f39c12;
+            border-color: #f39c12;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #e74c3c;
+            border-color: #e74c3c;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                padding: 15px;
+                margin-left: 200px;
+            }
+        }
     </style>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Sidebar Navigation -->
@@ -135,6 +183,16 @@
 
     <!-- Main Content Area -->
     <div class="main-content">
+        <!-- Mostrar información del usuario en la parte superior derecha -->
+        <c:if test="${not empty sessionScope.usuario}">
+            <div class="user-info-container">
+                <div class="user-info">
+                    <span class="user-icon"><i class="fas fa-user"></i></span>
+                    <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+                </div>
+            </div>
+        </c:if>
+        
         <div class="card">
             <div class="card-header">
                 <h1 class="h4 mb-0">Lista de Usuarios</h1>
@@ -201,7 +259,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

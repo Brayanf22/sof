@@ -13,13 +13,13 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
-        
+
         body {
             display: flex;
             min-height: 100vh;
             background-color: #f5f5f5;
         }
-        
+
         /* Menú lateral */
         .side-menu {
             width: 250px;
@@ -29,7 +29,7 @@
             position: fixed;
             padding: 20px 0;
         }
-        
+
         .menu-header {
             padding: 15px 20px;
             font-size: 18px;
@@ -37,7 +37,7 @@
             border-bottom: 1px solid #34495e;
             margin-bottom: 20px;
         }
-        
+
         .menu-item {
             padding: 12px 20px;
             color: white;
@@ -46,26 +46,26 @@
             transition: background-color 0.3s;
             border-left: 4px solid transparent;
         }
-        
+
         .menu-item:hover {
             background-color: #34495e;
             border-left: 4px solid #3498db;
         }
-        
+
         /* Contenido principal */
         .main-content {
             flex: 1;
             margin-left: 250px;
             padding: 30px;
         }
-        
+
         .alert-container {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 30px;
         }
-        
+
         h1 {
             color: #2c3e50;
             font-size: 24px;
@@ -73,51 +73,85 @@
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .alert-section {
             margin-bottom: 30px;
         }
-        
+
         h2 {
             color: #2c3e50;
             font-size: 18px;
             margin-bottom: 15px;
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-        
+
         th, td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
         }
-        
+
         th {
             background-color: #f8f9fa;
             font-weight: 600;
             color: #2c3e50;
         }
-        
+
         .warning {
             background-color: #fff3e0;
         }
-        
+
         .danger {
             background-color: #ffebee;
         }
-        
+
         .no-alerts {
             color: #7f8c8d;
             font-style: italic;
             padding: 15px;
         }
+
+        /* Usuario en parte superior derecha */
+        .user-header {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            background-color: #ecf0f1;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .user-icon {
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
+    <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
+
     <!-- Menú lateral -->
     <div class="side-menu">
         <div class="menu-header">SISTEMA DE INVENTARIO</div>
@@ -129,7 +163,7 @@
     <div class="main-content">
         <div class="alert-container">
             <h1>Alertas de Inventario</h1>
-            
+
             <div class="alert-section">
                 <h2>Productos por agotarse (menos de 10 unidades)</h2>
                 <c:choose>
@@ -158,7 +192,7 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            
+
             <div class="alert-section">
                 <h2>Productos por vencerse (próximos 7 días)</h2>
                 <c:choose>

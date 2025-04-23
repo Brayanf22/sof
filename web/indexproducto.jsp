@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,7 @@
             display: flex;
             min-height: 100vh;
             background-color: #f5f5f5;
+            position: relative;
         }
         
         /* Estilos para el menú lateral */
@@ -33,6 +35,29 @@
             text-align: center;
             font-size: 18px;
             font-weight: bold;
+        }
+
+        /* User info in top right corner of page */
+        .user-header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .user-info span {
+            font-size: 14px;
         }
         
         .menu-items {
@@ -97,11 +122,22 @@
     </style>
 </head>
 <body>
+    <!-- Mostrar información del usuario en la parte superior derecha de la página -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
+
     <!-- Menú lateral simplificado -->
     <div class="side-menu">
         <div class="menu-header">
             SISTEMA DE INVENTARIO
         </div>
+        
         <div class="menu-items">
             <div class="menu-item" onclick="location.href='productos'">
                 <span class="icon">📦</span> Productos
@@ -118,7 +154,6 @@
             <div class="menu-item" onclick="location.href='/parcial2.1/UsuarioServlet'">
                 <span class="icon">👥</span> Usuarios
             </div>
-            
         </div>
     </div>
 
@@ -126,7 +161,10 @@
     <div class="main-content">
         <div class="welcome-container">
             <h1 class="welcome-title">Bienvenido al Sistema de Control de Inventario</h1>
-           
+            <p class="welcome-message">
+                Gestiona tu inventario de manera eficiente con nuestro sistema integrado. 
+                Accede a las diferentes opciones desde el menú lateral.
+            </p>
         </div>
     </div>
 </body>

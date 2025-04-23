@@ -17,6 +17,7 @@
             display: flex;
             min-height: 100vh;
             background-color: #f5f5f5;
+            position: relative;
         }
         
         /* Menú lateral */
@@ -72,7 +73,7 @@
         .main-content {
             flex: 1;
             margin-left: 250px;
-            padding: 30px;
+            padding: 60px 30px 30px; /* Más padding-top para el user-info */
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -85,6 +86,7 @@
             padding: 30px;
             width: 100%;
             max-width: 600px;
+            position: relative;
         }
         
         h1 {
@@ -175,6 +177,30 @@
             margin-bottom: 20px;
             font-size: 14px;
         }
+        
+        /* Estilos para la información del usuario */
+        .user-info {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            display: flex;
+            align-items: center;
+            background-color: #e8f4fc;
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .user-info span {
+            margin-left: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .user-icon {
+            color: #3498db;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -192,8 +218,17 @@
     <!-- Contenido principal - Formulario -->
     <div class="main-content">
         <div class="form-container">
+             <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
             <h1>Agregar Nuevo Producto</h1>
-            
+        
             <c:if test="${not empty error}">
                 <div class="error">${error}</div>
             </c:if>
@@ -219,17 +254,17 @@
                     <input type="date" id="fechaVencimiento" name="fechaVencimiento" required>
                 </div>
                 
-      <div class="form-actions">
-    <button type="submit" class="btn btn-save">
-        <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon-small" alt="Guardar">
-        Guardar
-    </button>
-    
-    <a href="/parcial2.1/productos?accion=user" class="btn btn-cancel">
-        <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon-small" alt="Cancelar">
-        Cancelar
-    </a>
-</div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-save">
+                        <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon-small" alt="Guardar">
+                        Guardar
+                    </button>
+                    
+                    <a href="/parcial2.1/productos?accion=user" class="btn btn-cancel">
+                        <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon-small" alt="Cancelar">
+                        Cancelar
+                    </a>
+                </div>
             </form>
         </div>
     </div>

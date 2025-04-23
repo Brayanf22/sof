@@ -58,7 +58,16 @@
         tr:hover {
             background-color: #f8f9fa;
         }
-        
+
+        /* Información del usuario */
+        .user-info {
+            text-align: right;
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* Botones */
         .btn-container {
             text-align: center;
             margin-top: 30px;
@@ -79,12 +88,29 @@
         .btn:hover {
             background-color: #2980b9;
         }
+        
+        .btn-danger {
+            background-color: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Inventario</h1>
         
+        <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
         <table>
             <thead>
                 <tr>
@@ -111,8 +137,8 @@
         </table>
         
         <div class="btn-container">
-            <a href="index.jsp" class="btn">Cerrar sesion</a>
-            <a href="agregarproductosuser.jsp" class="btn">Nuevo Producto </a>
+            <a href="index.jsp" class="btn btn-danger">Cerrar sesión</a>
+            <a href="agregarproductosuser.jsp" class="btn">Nuevo Producto</a>
         </div>
     </div>
 </body>

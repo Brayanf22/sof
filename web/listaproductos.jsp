@@ -18,6 +18,7 @@
             display: flex;
             min-height: 100vh;
             background-color: #f5f5f5;
+            position: relative;
         }
         
         /* Menú lateral */
@@ -28,6 +29,14 @@
             height: 100vh;
             position: fixed;
             padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
         }
         
         .menu-item {
@@ -48,6 +57,25 @@
         
         .menu-item i {
             margin-right: 10px;
+        }
+
+        /* User info in top right corner of page */
+        .user-header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         /* Contenido principal */
@@ -144,18 +172,30 @@
     </style>
 </head>
 <body>
+
+    <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="icon">👤</span>
+                <span>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
+
     <!-- Menú lateral -->
     <div class="side-menu">
-        
-        <a href="productos?accion=nuevo" class="menu-item">
-            <span class="icon">➕</span> Nuevo Producto
-        </a>
-        <a href="alertas" class="menu-item">
-            <span class="icon">⚠️</span> Alertas
-        </a>
-        <a href="/parcial2.1/indexproducto.jsp" class="menu-item">
-            <span class="icon">🏠</span> Volver
-        </a>
+        <div class="menu-items">
+            <a href="productos?accion=nuevo" class="menu-item">
+                <span class="icon">➕</span> Nuevo Producto
+            </a>
+            <a href="alertas" class="menu-item">
+                <span class="icon">⚠️</span> Alertas
+            </a>
+            <a href="/parcial2.1/indexproducto.jsp" class="menu-item">
+                <span class="icon">🏠</span> Volver
+            </a>
+        </div>
     </div>
 
     <!-- Contenido principal -->

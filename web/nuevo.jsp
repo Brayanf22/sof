@@ -17,6 +17,7 @@
             display: flex;
             min-height: 100vh;
             background-color: #f5f5f5;
+            position: relative;
         }
         
         /* Menú lateral */
@@ -65,6 +66,29 @@
             flex: 1;
             margin-left: 250px;
             padding: 30px;
+        }
+        
+        /* User info in top right corner */
+        .user-header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .user-info i {
+            font-style: normal;
         }
         
         .form-container {
@@ -175,9 +199,19 @@
         
         <a href="UsuarioServlet" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/1269/1269654.png" class="menu-icon" alt="Salir">
-            volver
+            Volver
         </a>
     </div>
+
+    <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <i>👤</i>
+                <span>${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
 
     <!-- Contenido principal -->
     <div class="main-content">
@@ -187,7 +221,7 @@
             <c:if test="${not empty error}">
                 <div class="error">${error}</div>
             </c:if>
-            
+
             <form action="UsuarioServlet?accion=agregar" method="POST">
                 <div class="form-group">
                     <label>Nombre:</label>

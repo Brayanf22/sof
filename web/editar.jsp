@@ -6,14 +6,50 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Editar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .user-header {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            background-color: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .user-icon {
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body class="container mt-4">
+
+      <!-- Mostrar información del usuario en la parte superior derecha -->
+    <c:if test="${not empty sessionScope.usuario}">
+        <div class="user-header">
+            <div class="user-info">
+                <span class="user-icon">👤</span>
+                <span class="user-name">${sessionScope.usuario.nombre} ${sessionScope.usuario.apellido}</span>
+            </div>
+        </div>
+    </c:if>
+
     <h1>Editar Usuario</h1>
-    
+
     <c:if test="${not empty error}">
         <div class="alert alert-danger">${error}</div>
     </c:if>
-    
+   
     <form action="UsuarioServlet?accion=actualizar" method="POST" class="mt-3">
         <input type="hidden" name="id" value="${usuario.idUsuario}">
         
