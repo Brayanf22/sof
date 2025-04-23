@@ -63,6 +63,10 @@ public class ProductoServlet extends HttpServlet {
         }
         
         switch (accion) {
+             case "guardar2":
+                guardarProducto2(request, response);
+                break;
+            
             case "guardar":
                 guardarProducto(request, response);
                 break;
@@ -99,30 +103,75 @@ public class ProductoServlet extends HttpServlet {
         request.setAttribute("producto", producto);
         request.getRequestDispatcher("editarproducto.jsp").forward(request, response);
     }
-    
-    private void guardarProducto(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            String nombre = request.getParameter("nombre");
-            String descripcion = request.getParameter("descripcion");
-            int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-            SimpleDateFormat sdf = new SimpleDateFormat("20-04-2024");
-            Date fechaVencimiento = sdf.parse(request.getParameter("fechaVencimiento"));
-            
-            Producto nuevoProducto = new Producto();
-            nuevoProducto.setNombre(nombre);
-            nuevoProducto.setDescripcion(descripcion);
-            nuevoProducto.setCantidad(cantidad);
-            nuevoProducto.setFechaVencimiento(fechaVencimiento);
-            
-            productoDAO.agregar(nuevoProducto);
-            response.sendRedirect("productos");
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Error al guardar el producto");
-            request.getRequestDispatcher("agregarProducto.jsp").forward(request, response);
-        }
+   
+      private void guardarProducto2(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        // Obtener parámetros del formulario
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        String fechaStr = request.getParameter("fechaVencimiento");
+        
+        // Convertir la fecha de String a Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaVencimiento = sdf.parse(fechaStr);
+        
+        // Crear el nuevo producto
+        Producto nuevoProducto = new Producto();
+        nuevoProducto.setNombre(nombre);
+        nuevoProducto.setDescripcion(descripcion);
+        nuevoProducto.setCantidad(cantidad);
+        nuevoProducto.setFechaVencimiento(fechaVencimiento);
+        
+        // Guardar en la base de datos
+        productoDAO.agregar(nuevoProducto);
+        
+        // Redirigir a la lista de productos con mensaje de éxito
+        request.getSession().setAttribute("mensaje", "Producto agregado exitosamente");
+        response.sendRedirect("/parcial2.1/productos?accion=user");
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Manejar error y volver al formulario
+        request.setAttribute("error", "Error al guardar el producto: " + e.getMessage());
+        request.getRequestDispatcher("agregarproductos.jsp").forward(request, response);
     }
+}
+   private void guardarProducto(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        // Obtener parámetros del formulario
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        String fechaStr = request.getParameter("fechaVencimiento");
+        
+        // Convertir la fecha de String a Date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaVencimiento = sdf.parse(fechaStr);
+        
+        // Crear el nuevo producto
+        Producto nuevoProducto = new Producto();
+        nuevoProducto.setNombre(nombre);
+        nuevoProducto.setDescripcion(descripcion);
+        nuevoProducto.setCantidad(cantidad);
+        nuevoProducto.setFechaVencimiento(fechaVencimiento);
+        
+        // Guardar en la base de datos
+        productoDAO.agregar(nuevoProducto);
+        
+        // Redirigir a la lista de productos con mensaje de éxito
+        request.getSession().setAttribute("mensaje", "Producto agregado exitosamente");
+        response.sendRedirect("productos");
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Manejar error y volver al formulario
+        request.setAttribute("error", "Error al guardar el producto: " + e.getMessage());
+        request.getRequestDispatcher("agregarproductos.jsp").forward(request, response);
+    }
+}
     
     private void actualizarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

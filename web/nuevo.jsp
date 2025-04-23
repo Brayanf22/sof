@@ -167,16 +167,13 @@
     <!-- Menú lateral -->
     <div class="side-menu">
         <div class="menu-header">SISTEMA DE INVENTARIO</div>
-        <a href="UsuarioServlet?accion=nuevo" class="menu-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" class="menu-icon" alt="Nuevo">
-            Nuevo Usuario
-        </a>
+        
         <a href="/parcial2.1/UsuarioServlet" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" class="menu-icon" alt="/parcial2.1/UsuarioServlet">
             Lista de usuarios
         </a>
         
-        <a href="/parcial2.1/UsuarioServlet" class="menu-item">
+        <a href="UsuarioServlet" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/1269/1269654.png" class="menu-icon" alt="Salir">
             volver
         </a>

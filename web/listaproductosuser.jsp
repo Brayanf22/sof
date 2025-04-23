@@ -111,7 +111,8 @@
         </table>
         
         <div class="btn-container">
-            <a href="index.jsp" class="btn">Volver al inicio</a>
+            <a href="index.jsp" class="btn">Cerrar sesion</a>
+            <a href="agregarproductosuser.jsp" class="btn">Nuevo Producto </a>
         </div>
     </div>
 </body>

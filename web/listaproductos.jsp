@@ -146,9 +146,7 @@
 <body>
     <!-- Menú lateral -->
     <div class="side-menu">
-        <a href="productos" class="menu-item">
-            <span class="icon">📦</span> Productos
-        </a>
+        
         <a href="productos?accion=nuevo" class="menu-item">
             <span class="icon">➕</span> Nuevo Producto
         </a>

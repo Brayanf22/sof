@@ -182,13 +182,9 @@
     <div class="side-menu">
         <div class="menu-header">SISTEMA DE INVENTARIO</div>
         <div class="button-container">
-            <a href="productos" class="menu-btn">
+            <a href="/parcial2.1/productos?accion=user" class="menu-btn">
                 <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon" alt="Ver productos">
                 Ver productos
-            </a>
-            <a href="/parcial2.1/indexproducto.jsp" class="menu-btn">
-                <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon" alt="Inicio">
-                Volver al inicio
             </a>
         </div>
     </div>
@@ -202,7 +198,7 @@
                 <div class="error">${error}</div>
             </c:if>
             
-            <form action="productos?accion=guardar" method="post">
+            <form action="productos?accion=guardar2" method="post">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -223,12 +219,13 @@
                     <input type="date" id="fechaVencimiento" name="fechaVencimiento" required>
                 </div>
                 
-              <div class="form-actions">
+      <div class="form-actions">
     <button type="submit" class="btn btn-save">
         <img src="https://cdn-icons-png.flaticon.com/512/709/709586.png" class="btn-icon-small" alt="Guardar">
         Guardar
     </button>
-    <a href="/parcial2.1/indexproducto.jsp" class="btn btn-cancel">
+    
+    <a href="/parcial2.1/productos?accion=user" class="btn btn-cancel">
         <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" class="btn-icon-small" alt="Cancelar">
         Cancelar
     </a>

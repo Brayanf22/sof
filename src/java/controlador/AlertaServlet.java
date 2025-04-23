@@ -1,12 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controlador;
 
-
 import Interfaces.ProductoDAO;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,11 +31,14 @@ public class AlertaServlet extends HttpServlet {
         Date hoy = new Date();
         long sieteDias = 7 * 24 * 60 * 60 * 1000L;
         Date fechaLimite = new Date(hoy.getTime() + sieteDias);
-        List<Producto> productosPorVencerse = productoDAO.obtenerProductosPorVencerse(fechaLimite);
+        
+        // Convertir java.util.Date a java.sql.Date correctamente
+        java.sql.Date sqlFechaLimite = new java.sql.Date(fechaLimite.getTime());
+        List<Producto> productosPorVencerse = productoDAO.obtenerProductosPorVencerse(sqlFechaLimite);
         
         request.setAttribute("productosPorAgotarse", productosPorAgotarse);
         request.setAttribute("productosPorVencerse", productosPorVencerse);
         
         request.getRequestDispatcher("alerta.jsp").forward(request, response);
     }
-}
+} 
