@@ -112,7 +112,7 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="logo">Inventario</div>
+        <div class="logo">Moda Elegante S.A</div>
         
         <c:if test="${not empty error}">
             <div class="error-message">${error}</div>

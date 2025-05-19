@@ -7,30 +7,73 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Editar Producto</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+        * {
             margin: 0;
-            padding: 20px;
-            color: #333;
-            line-height: 1.6;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
-        .container {
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        /* Menú lateral */
+        .side-menu {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            padding: 20px 0;
+        }
+
+        .menu-header {
+            padding: 15px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #34495e;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover {
+            background-color: #34495e;
+            border-left: 4px solid #3498db;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px;
+        }
+
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
+            font-size: 24px;
+            margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #eee;
+            border-bottom: 1px solid #eee;
         }
 
         .error {
@@ -106,7 +149,8 @@
             background-color: #7f8c8d;
         }
 
-        .user-info {
+        /* Usuario en parte superior derecha */
+        .user-header {
             position: fixed;
             top: 15px;
             right: 20px;
@@ -120,15 +164,27 @@
             gap: 10px;
         }
 
+        .user-info {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
         .user-icon {
             font-size: 18px;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
+        @media (max-width: 768px) {
+            .side-menu {
+                width: 100%;
+                height: auto;
+                position: relative;
             }
-
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
             .btn {
                 display: block;
                 width: 100%;
@@ -138,8 +194,7 @@
     </style>
 </head>
 <body>
-
-      <!-- Mostrar información del usuario en la parte superior derecha -->
+    <!-- Mostrar información del usuario en la parte superior derecha -->
     <c:if test="${not empty sessionScope.usuario}">
         <div class="user-header">
             <div class="user-info">
@@ -149,42 +204,51 @@
         </div>
     </c:if>
 
-    <div class="container">
-        <h1>Editar Producto</h1>
+    <!-- Menú lateral -->
+    <div class="side-menu">
+        <div class="menu-header">EDITAR PRODUCTO</div>
+        <a href="productos" class="menu-item">Volver</a>
+    </div>
 
-        <c:if test="${not empty error}">
-            <div class="error">${error}</div>
-        </c:if>
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="form-container">
+            <h1>Editar Producto</h1>
 
-        <form action="productos?accion=actualizar" method="post">
-            <input type="hidden" name="id" value="${producto.id}">
+            <c:if test="${not empty error}">
+                <div class="error">${error}</div>
+            </c:if>
 
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" value="${producto.nombre}" required>
-            </div>
+            <form action="productos?accion=actualizar" method="post">
+                <input type="hidden" name="id" value="${producto.id}">
 
-            <div class="form-group">
-                <label for="descripcion">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" rows="3">${producto.descripcion}</textarea>
-            </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" value="${producto.nombre}" required>
+                </div>
 
-            <div class="form-group">
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" min="0" value="${producto.cantidad}" required>
-            </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="3">${producto.descripcion}</textarea>
+                </div>
 
-            <div class="form-group">
-                <label for="fechaVencimiento">Fecha de Vencimiento:</label>
-                <input type="date" id="fechaVencimiento" name="fechaVencimiento" 
-                       value="<fmt:formatDate value='${producto.fechaVencimiento}' pattern='yyyy-MM-dd'/>" required>
-            </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" name="cantidad" min="0" value="${producto.cantidad}" required>
+                </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn">Actualizar</button>
-                <a href="productos" class="btn">Cancelar</a>
-            </div>
-        </form>
+                <div class="form-group">
+                    <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+                    <input type="date" id="fechaVencimiento" name="fechaVencimiento" 
+                           value="<fmt:formatDate value='${producto.fechaVencimiento}' pattern='yyyy-MM-dd'/>" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn">Actualizar</button>
+                    <a href="productos" class="btn">Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

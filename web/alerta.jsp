@@ -110,6 +110,11 @@
             background-color: #ffebee;
         }
 
+        .expired {
+            background-color: #ffcdd2;
+            font-weight: bold;
+        }
+
         .no-alerts {
             color: #7f8c8d;
             font-style: italic;
@@ -205,7 +210,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Fecha Vencimiento</th>
-                                    <th>Días restantes</th>
+                                    <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -217,8 +222,18 @@
                                         </td>
                                         <td>
                                             <jsp:useBean id="now" class="java.util.Date"/>
-                                            <fmt:formatNumber value="${(producto.fechaVencimiento.time - now.time) / (1000*60*60*24)}" 
-                                                              maxFractionDigits="0"/>
+                                            <c:set var="diasRestantes" value="${(producto.fechaVencimiento.time - now.time) / (1000*60*60*24)}"/>
+                                            <c:choose>
+                                                <c:when test="${diasRestantes < 0}">
+                                                    <span class="expired">PRODUCTO VENCIDO</span>
+                                                </c:when>
+                                                <c:when test="${diasRestantes <= 7}">
+                                                    <fmt:formatNumber value="${diasRestantes}" maxFractionDigits="0"/> días
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:formatDate value="${producto.fechaVencimiento}" pattern="dd/MM/yyyy"/>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </td>
                                     </tr>
                                 </c:forEach>

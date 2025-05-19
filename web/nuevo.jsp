@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Sistema de Inventario - Nuevo Usuario</title>
+    <title>Control de Usuarios</title>
     <style>
         * {
             margin: 0;
@@ -190,17 +190,13 @@
 <body>
     <!-- Menú lateral -->
     <div class="side-menu">
-        <div class="menu-header">SISTEMA DE INVENTARIO</div>
+        <div class="menu-header">SISTEMA DE CONTROL DE USUARIOS</div>
         
         <a href="/parcial2.1/UsuarioServlet" class="menu-item">
             <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" class="menu-icon" alt="/parcial2.1/UsuarioServlet">
             Lista de usuarios
         </a>
         
-        <a href="UsuarioServlet" class="menu-item">
-            <img src="https://cdn-icons-png.flaticon.com/512/1269/1269654.png" class="menu-icon" alt="Salir">
-            Volver
-        </a>
     </div>
 
     <!-- Mostrar información del usuario en la parte superior derecha -->
@@ -252,6 +248,12 @@
                     <input type="checkbox" name="esAdmin" id="esAdmin">
                     <label for="esAdmin">Es administrador</label>
                 </div>
+                
+                <div class="form-check">
+                    <input type="checkbox" name="esAdmin" id="esAdmin">
+                    <label for="esAdmin">Editor</label>
+                </div>
+                
                 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-success">

@@ -157,7 +157,7 @@
     <!-- Sidebar Navigation -->
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2>SISTEMA DE INVENTARIO</h2>
+            <h2>SISTEMA DE CONTROL DE USUARIOS</h2>
         </div>
         <ul class="nav-menu">
             <li class="nav-item">

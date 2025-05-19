@@ -161,10 +161,7 @@
     <div class="main-content">
         <div class="welcome-container">
             <h1 class="welcome-title">Bienvenido al Sistema de Control de Inventario</h1>
-            <p class="welcome-message">
-                Gestiona tu inventario de manera eficiente con nuestro sistema integrado. 
-                Accede a las diferentes opciones desde el menú lateral.
-            </p>
+            
         </div>
     </div>
 </body>
